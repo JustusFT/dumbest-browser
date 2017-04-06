@@ -19,6 +19,7 @@ class Page
   def links
     result = []
     @doc.css("a").each do |x|
+      next unless x[:href].include? "://"
       result << x[:href]
     end
     result
