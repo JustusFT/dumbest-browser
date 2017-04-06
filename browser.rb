@@ -1,6 +1,7 @@
 require 'net/http'
 require 'nokogiri'
 require 'open-uri'
+require './page.rb'
 
 
 # require_relative 'util'
@@ -9,13 +10,15 @@ class Browser
   def run!
     print "url> "
     url = gets.chomp
-    puts "Fetching..."
-    doc = Nokogiri::HTML(open(url))
-    puts "Title: #{doc.css("title").text}"
-    puts "Content length: "
-    doc.css("a").each do |x|
-      puts "  #{x[:href]}"
+    page = Page.new(url)
+    puts "Fetching #{page.url}..."
+    page.fetch!
+    puts "Title: #{page.title}"
+    puts "Links: "
+    page.links.each do |x|
+      puts "  #{x}"
     end
+
     # Run the browser
     # Display a prompt for a user
     # Parse their input

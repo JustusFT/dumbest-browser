@@ -30,17 +30,3 @@ class Page
     # This would pull out "http://somesite.com/page.html"
   end
 end
-
-page = Page.new('http://edition.cnn.com/2013/02/06/travel/private-jets/index.html')
-
-# Makes the HTTP request
-page.fetch!
-
-# Returns the URL of the underlying page
-puts page.url
-
-# Returns an Array of URLs (as Strings)
-puts page.links
-
-# Returns the page's title
-puts page.title
